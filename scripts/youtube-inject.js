@@ -3,6 +3,10 @@
 	const BUTTON_ATTR = 'data-skipcut-injected';
 	const SKIPCUT_BASE = 'https://skipcut.com/';
 
+	// Inline SVG icon: red circle with white right-pointing arrow
+	const ICON_SVG = '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><circle cx="12" cy="12" r="12" fill="#e11d48"/><polygon points="9,7 9,17 16,12" fill="#ffffff"/></svg>';
+	const ICON_DATA_URL = 'data:image/svg+xml;utf8,' + encodeURIComponent(ICON_SVG);
+
 	function buildSkipcutUrl(youtubeUrl) {
 		try {
 			const u = new URL(youtubeUrl);
@@ -38,7 +42,7 @@
 		btn.title = 'Open on SkipCut';
 		btn.style.width = sizePx + 'px';
 		btn.style.height = sizePx + 'px';
-		btn.style.backgroundImage = `url(${chrome.runtime.getURL('icons/skipcut-32.png')})`;
+		btn.style.backgroundImage = `url(${ICON_DATA_URL})`;
 		btn.addEventListener('click', function(ev) {
 			ev.preventDefault();
 			ev.stopPropagation();
