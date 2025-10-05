@@ -1,0 +1,34 @@
+{
+  "manifest_version": 3,
+  "name": "SkipCut Redirector",
+  "description": "Adds a SkipCut button on YouTube to open videos on SkipCut.com and auto-fullscreens there.",
+  "version": "1.0.0",
+  "action": {
+    "default_title": "Open on SkipCut"
+  },
+  "host_permissions": [
+    "https://www.youtube.com/*",
+    "https://m.youtube.com/*",
+    "https://youtu.be/*",
+    "https://skipcut.com/*"
+  ],
+  "content_scripts": [
+    {
+      "matches": [
+        "https://www.youtube.com/*",
+        "https://m.youtube.com/*",
+        "https://youtu.be/*"
+      ],
+      "js": ["scripts/youtube-inject.js"],
+      "css": ["styles/inject.css"],
+      "run_at": "document_idle"
+    },
+    {
+      "matches": [
+        "https://skipcut.com/*"
+      ],
+      "js": ["scripts/skipcut-autofs.js"],
+      "run_at": "document_idle"
+    }
+  ]
+}

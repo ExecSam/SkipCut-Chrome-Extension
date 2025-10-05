@@ -1,0 +1,32 @@
+.skipcut-thumb-container {
+	position: absolute;
+	right: 6px;
+	bottom: 6px;
+	z-index: 10;
+}
+
+.skipcut-watch-container {
+	position: absolute;
+	right: 12px;
+	bottom: 56px;
+	z-index: 50;
+}
+
+.skipcut-button {
+	appearance: none;
+	border: none;
+	border-radius: 4px;
+	background-color: rgba(0,0,0,0.6);
+	background-repeat: no-repeat;
+	background-size: 70% 70%;
+	background-position: center;
+	cursor: pointer;
+	transition: transform 0.12s ease, background-color 0.12s ease, opacity 0.12s ease;
+	opacity: 0.9;
+}
+
+.skipcut-button:hover {
+	transform: scale(1.06);
+	background-color: rgba(0,0,0,0.75);
+	opacity: 1;
+}
