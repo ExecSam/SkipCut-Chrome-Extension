@@ -7,13 +7,18 @@
 	const ICON_SVG = '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><circle cx="12" cy="12" r="12" fill="#e11d48"/><polygon points="9,7 9,17 16,12" fill="#ffffff"/></svg>';
 	const ICON_DATA_URL = 'data:image/svg+xml;utf8,' + encodeURIComponent(ICON_SVG);
 
-	function buildSkipcutUrl(youtubeUrl) {
+	function normalizeYouTubeUrl(urlStr) {
 		try {
-			const u = new URL(youtubeUrl);
-			return SKIPCUT_BASE + encodeURIComponent(u.toString());
+			// Handle relative paths like /watch?v=...
+			return new URL(urlStr, location.origin).toString();
 		} catch (e) {
-			return SKIPCUT_BASE + encodeURIComponent(youtubeUrl);
+			return urlStr;
 		}
+	}
+
+	function buildSkipcutUrl(youtubeUrl) {
+		const normalized = normalizeYouTubeUrl(youtubeUrl);
+		return SKIPCUT_BASE + normalized; // Do not encode; SkipCut expects the raw URL path-appended
 	}
 
 	function openOnSkipcut(youtubeUrl) {
